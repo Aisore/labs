@@ -8,7 +8,7 @@ from tkinter import *
 def output(event):
     times = int(ent.get())
     l = 0
-    my_file = open("some.txt", 'a')
+    my_file = open("some.txt", 'w')
     while l < times:
         number = random.randint(100000,999999)
         m = "https://vk.com/id{}".format(number)
@@ -39,13 +39,19 @@ def output(event):
     tex.insert(END, mens)
 
 root = Tk()
-lab = Label(root, text="Для подсчеста среднего возраста \n введите число", font="Arial 18")
+root.title("Laboratory work. Python")
+
+label = Label(root, text="Чтобы посчитать средний возраст пользователей VK \n введите кол-во пользователей в окно слева.", font= "Arial 8")
+label.place(relx=0.09, rely=0.07)
+
 ent = Entry(root,width=2)
-but = Button(root, text="Посчитать средний возраст пользователей Vk")
-tex = Text(root,width=4,height=2,font="12",wrap=WORD)
+but = Button(root, text="Посчитать")
+tex = Text(root,width=4,height=1,font="12")
+
 ent.grid(row=0,column=0,padx=20)
-but.grid(row=0,column=1)
-tex.grid(row=0,column=2,padx=20,pady=10)
+but.grid(row=0,column=1,padx=50)
+tex.grid(row=0,column=2,padx=20,pady=50)
+
  
 but.bind("<Button-1>",output)
  
