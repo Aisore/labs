@@ -42,13 +42,10 @@ def output(event):
         mean = round(sum(numbers)/len(numbers))
         mens = str(mean)
     else:
-    infile = open("some.txt", 'r')
-        while (times != 0):
-            times -= 1
-            numbers = [float(w) for w in infile.read().split()]
-            
-
-
+        infile = open("some.txt", 'r')
+        coco = [float(w) for w in infile.readlines(times)]
+        mean = round(sum(coco)/len(coco))
+        mens = str(mean)
     tex.delete(1.0,END)
     tex.insert(END, mens)
 
@@ -83,12 +80,16 @@ def number_of_friends(event):
                             my_file2.write(i + "\n")
                         else:
                             ch -=1
-    my_file2.close()
-
-    infile = open("some2.txt", 'r')
-    numbers = [float(w) for w in infile.read().split()]
-    mean = round(sum(numbers)/len(numbers))
-    mens = str(mean)
+        my_file2.close()
+        infile = open("some2.txt", 'r')
+        numbers = [float(w) for w in infile.read().split()]
+        mean = round(sum(numbers)/len(numbers))
+        mens = str(mean)
+    else:
+        infile = open("some2.txt", 'r')
+        coco = [float(w) for w in infile.readlines(friends)]
+        mean = round(sum(coco)/len(coco))
+        mens = str(mean)
     tex2.delete(1.0,END)
     tex2.insert(END, mens)
 
