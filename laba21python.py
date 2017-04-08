@@ -4,92 +4,19 @@ import urllib
 import re
 from bs4 import BeautifulSoup
 from tkinter import *
+from asd import num_save, mathem_one
 
 def output(event):
     times = int(ent.get())
-    l = 0
-    my_file = open("some.txt", 'a')
-    infnum = len(open("some.txt", 'r').readlines())
-    if (times > infnum):
-        while l < times:
-            number = random.randint(100000,999999)
-            m = "https://vk.com/id{}".format(number)
-            urllib.request.urlretrieve(url=m, filename='Account.html')
-            infile = open('Account.html')
-            lines = infile.readlines()
-            for i in range(len(lines)):
-                line = lines[i]
-                if 'div class="pp_info"' in line:
-                    age = lines[i]
-                    integ = ''
-                    for n in age:
-                        if n.isdigit():
-                            if (int(n) < 100):
-                                integ += n
-                            else:
-                                l -=1
-                        else:
-                            integ += ' '
-                    for i in integ.split():
-                        if (int(i) < 1000):
-                            l += 1
-                            my_file.write(i + "\n")
-                        else:
-                            l -=1
-        my_file.close()
-        infile = open("some.txt", 'r')
-        numbers = [float(w) for w in infile.read().split()]
-        mean = round(sum(numbers)/len(numbers))
-        mens = str(mean)
-    else:
-        infile = open("some.txt", 'r')
-        coco = [float(w) for w in infile.readlines(times)]
-        mean = round(sum(coco)/len(coco))
-        mens = str(mean)
+    num_save("some.txt", times, 'div', "pp_info")
+    mathem_one("some.txt", times)           
     tex.delete(1.0,END)
     tex.insert(END, mens)
 
 def number_of_friends(event):
     friends = int(ent2.get())
-    ch = 0
-    my_file2 = open("some2.txt", 'a')
-    infnum = len(open("some2.txt", 'r').readlines())
-    if (friends > infnum):
-        while ch < friends:
-            number = random.randint(100000,999999)
-            m = "https://vk.com/id{}".format(number)
-            urllib.request.urlretrieve(url=m, filename='Account.html')
-            infile = open('Account.html')
-            lines = infile.readlines()
-            for i in range(len(lines)):
-                line = lines[i]
-                if 'em class="pm_counter"' in line:
-                    numfr = lines[i]
-                    integ = ''
-                    for n in numfr:
-                        if n.isdigit():
-                            if (int(n) < 1000):
-                                integ += n
-                            else:
-                                ch -=1
-                        else:
-                            integ += ' '
-                    for i in integ.split():
-                        if (int(i) < 1000):
-                            ch += 1
-                            my_file2.write(i + "\n")
-                        else:
-                            ch -=1
-        my_file2.close()
-        infile = open("some2.txt", 'r')
-        numbers = [float(w) for w in infile.read().split()]
-        mean = round(sum(numbers)/len(numbers))
-        mens = str(mean)
-    else:
-        infile = open("some2.txt", 'r')
-        coco = [float(w) for w in infile.readlines(friends)]
-        mean = round(sum(coco)/len(coco))
-        mens = str(mean)
+    num_save("some2.txt", friends, 'em', "pm_counter")
+    mathem_one("some2.txt", friends)
     tex2.delete(1.0,END)
     tex2.insert(END, mens)
 
