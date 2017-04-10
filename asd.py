@@ -5,27 +5,26 @@ import re
 from bs4 import BeautifulSoup
 
 def num_save(namefile, times, catg, classname):
-    with open('namefile', 'a') as my_file:
-        infnum = len(open("namefile", 'r').readlines())
+    with open(namefile, 'w') as my_file:
+        infnum = len(open(namefile, 'r').readlines())
         if (times > infnum):
             l = 0
             while l < times:
                 number = random.randint(100000,999999)
                 m = "https://vk.com/id{}".format(number)
+                #### Сохраняем ВСЮ страничку HTML в отдельный файл account.html
                 urllib.request.urlretrieve(url=m, filename='Account.html')
-                infile = open('Account.html')
-                inffind = infile.find_all('catg', class_="classname")
-                for integ in inffind:
-                    l += 1
-                    my_file.write(int(integ) + "\n")
-
-
-def mathem_one(filename, fnum):
-    infile = open("filename", 'r')
-    if (fnum == 0):
-        numbers = [float(w) for w in infile.read().split()]
-    else:
-        numbers = [float(w) for w in infile.readlines(fnum)]
-    mean = round(sum(numbers)/len(numbers))
-    mens = str(mean)
-    
+                #### читаем наш Account.html
+                infile = open('Account.html').read()
+                ####отправляем наш Account.html как строку в парсер
+                bs_infile = BeautifulSoup(infile, 'html.parser')
+                #### ищем наш класснейм(тоесть pp_info для возраста либо pm_counter для кол-ва друзей)
+                inffind = bs_infile.find_all(catg, class_=classname)
+                try:
+                    ####удаляем с полученной строки все буквы, оставляем только цифры.
+                    age = re.sub("\D", "", inffind[0].string)
+                    if age.isdigit():
+                        l += 1
+                        my_file.write(age + "\n")
+                except:
+                    continue
