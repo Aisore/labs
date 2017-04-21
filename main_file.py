@@ -4,8 +4,8 @@ import urllib
 import re
 from bs4 import BeautifulSoup
 from tkinter import *
-from asd import num_save
-from aswe import mathem_one, find_slice
+from info_get import num_save
+from average_value import mathem_one, find_slice
 
 ages_file = "some.txt"
 friends_number = "some2.txt"
